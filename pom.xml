@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>4.0.0</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>io.github.komorkaaa</groupId>
+    <artifactId>MeetFlow</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>MeetFlow</name>
+    <description>MeetFlow</description>
+
+    <url>https://github.com/komorkaaa/MeetFlow</url>
+
+    <licenses>
+        <license>
+            <name>All Rights Reserved</name>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Dima</name>
+            <url>https://github.com/komorkaaa</url>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:https://github.com/komorkaaa/MeetFlow.git</connection>
+        <developerConnection>scm:git:git@github.com:komorkaaa/MeetFlow.git</developerConnection>
+        <url>https://github.com/komorkaaa/MeetFlow</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <properties>
+        <java.version>21</java.version>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
