@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:18
+    container_name: meetflow-postgres
+    ports:
+      - "5454:5432"
+    environment:
+      POSTGRES_DB: meetflow_db
+      POSTGRES_USER: mfuser
+      POSTGRES_PASSWORD: mfpass
+    volumes:
+      - meetflow_pgdata:/var/lib/postgresql
+    networks:
+      - meetflow-net
+
+volumes:
+  meetflow_pgdata:
+
+networks:
+  meetflow-net:
