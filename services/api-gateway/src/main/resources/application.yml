@@ -32,6 +32,13 @@ spring:
           filters:
             - StripPrefix=1
 
+        - id: profile-service
+          uri: http://profile-service:8080
+          predicates:
+            - Path=/profile/**
+          filters:
+            - StripPrefix=1
+
 management:
   endpoints:
     web:

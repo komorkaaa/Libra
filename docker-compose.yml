@@ -58,6 +58,20 @@ services:
         condition: service_healthy
     networks: [meetflow-net]
 
+  profile-service:
+    build:
+      context: .
+      dockerfile: services/profile-service/Dockerfile
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/meetflow_db?currentSchema=profile
+      SPRING_DATASOURCE_USERNAME: mfuser
+      SPRING_DATASOURCE_PASSWORD: mfpass
+    ports: [ "8084:8080" ]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks: [ meetflow-net ]
+
   api-gateway:
     build:
       context: .
@@ -67,6 +81,7 @@ services:
       - auth-service
       - event-service
       - task-service
+      - profile-service
     networks: [meetflow-net]
 
 volumes:

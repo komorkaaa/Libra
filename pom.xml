@@ -23,6 +23,7 @@
         <module>services/auth-service</module>
         <module>services/event-service</module>
         <module>services/task-service</module>
+        <module>services/profile-service</module>
     </modules>
 
     <properties>
