@@ -1,0 +1,46 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      default-filters:
+        - RemoveRequestHeader=Cookie
+
+      routes:
+        - id: auth-service
+          uri: http://auth-service:8080
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
+
+        - id: event-service
+          uri: http://event-service:8080
+          predicates:
+            - Path=/event/**
+          filters:
+            - StripPrefix=1
+
+        - id: task-service
+          uri: http://task-service:8080
+          predicates:
+            - Path=/task/**
+          filters:
+            - StripPrefix=1
+
+        - id: profile-service
+          uri: http://profile-service:8080
+          predicates:
+            - Path=/profile/**
+          filters:
+            - StripPrefix=1
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
