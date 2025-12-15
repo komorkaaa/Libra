@@ -6,10 +6,26 @@ spring:
     url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5454/meetflow_db?currentSchema=profile}
     username: ${SPRING_DATASOURCE_USERNAME:mfuser}
     password: ${SPRING_DATASOURCE_PASSWORD:mfpass}
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+        format_sql: true
     show-sql: true
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    schemas: profile
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 
 server:
   port: 8080
