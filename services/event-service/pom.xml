@@ -6,13 +6,13 @@
 
     <parent>
         <groupId>io.github.komorkaaa</groupId>
-        <artifactId>meetflow</artifactId>
+        <artifactId>libra</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
     <artifactId>event-service</artifactId>
-    <name>meetflow-event-service</name>
+    <name>libra-event-service</name>
 
     <packaging>jar</packaging>
 
