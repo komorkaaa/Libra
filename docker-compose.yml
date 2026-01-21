@@ -30,20 +30,6 @@ services:
         condition: service_healthy
     networks: [meetflow-net]
 
-  event-service:
-    build:
-      context: .
-      dockerfile: services/event-service/Dockerfile
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/meetflow_db?currentSchema=event
-      SPRING_DATASOURCE_USERNAME: mfuser
-      SPRING_DATASOURCE_PASSWORD: mfpass
-    ports: ["8082:8080"]
-    depends_on:
-      postgres:
-        condition: service_healthy
-    networks: [meetflow-net]
-
   task-service:
     build:
       context: .
