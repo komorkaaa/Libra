@@ -35,7 +35,7 @@ spring:
         - id: profile-service
           uri: http://profile-service:8080
           predicates:
-            - Path=/profile/**
+            - Path=/profiles/**
           filters:
             - StripPrefix=1
 
