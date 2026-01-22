@@ -1,4 +1,4 @@
-package io.github.komorkaaa.meetflow.auth;
+package io.github.komorkaaa.libra.auth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

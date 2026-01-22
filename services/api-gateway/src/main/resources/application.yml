@@ -18,20 +18,6 @@ spring:
           filters:
             - StripPrefix=1
 
-        - id: event-service
-          uri: http://event-service:8080
-          predicates:
-            - Path=/event/**
-          filters:
-            - StripPrefix=1
-
-        - id: task-service
-          uri: http://task-service:8080
-          predicates:
-            - Path=/task/**
-          filters:
-            - StripPrefix=1
-
         - id: profile-service
           uri: http://profile-service:8080
           predicates:

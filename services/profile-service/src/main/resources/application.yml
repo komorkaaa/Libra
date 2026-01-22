@@ -3,9 +3,9 @@ spring:
     name: profile-service
 
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5454/meetflow_db?currentSchema=profile}
-    username: ${SPRING_DATASOURCE_USERNAME:mfuser}
-    password: ${SPRING_DATASOURCE_PASSWORD:mfpass}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5454/libra_db?currentSchema=profile}
+    username: ${SPRING_DATASOURCE_USERNAME:libra_user}
+    password: ${SPRING_DATASOURCE_PASSWORD:libra_pass}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -26,6 +26,7 @@ logging:
   level:
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping=TRACE:
 
 server:
   port: 8080

@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.komorkaaa</groupId>
-    <artifactId>libra</artifactId>
+    <artifactId>Libra</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -20,7 +20,6 @@
     <modules>
         <module>services/api-gateway</module>
         <module>services/auth-service</module>
-        <module>services/task-service</module>
         <module>services/profile-service</module>
     </modules>
 

@@ -1,4 +1,4 @@
-package io.github.komorkaaa.meetflow.profile.config;
+package io.github.komorkaaa.libra.profile.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,13 +1,13 @@
-package io.github.komorkaaa.meetflow.profile.service;
+package io.github.komorkaaa.libra.profile.service;
 
-import io.github.komorkaaa.meetflow.profile.dto.CreateProfileRequest;
-import io.github.komorkaaa.meetflow.profile.dto.ProfileResponse;
-import io.github.komorkaaa.meetflow.profile.dto.UpdateProfileRequest;
-import io.github.komorkaaa.meetflow.profile.entity.Profile;
-import io.github.komorkaaa.meetflow.profile.repository.ProfileRepository;
-
+import io.github.komorkaaa.libra.profile.dto.CreateProfileRequest;
+import io.github.komorkaaa.libra.profile.dto.ProfileResponse;
+import io.github.komorkaaa.libra.profile.dto.UpdateProfileRequest;
+import io.github.komorkaaa.libra.profile.entity.Profile;
+import io.github.komorkaaa.libra.profile.repository.ProfileRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.Optional;
 import java.util.UUID;
 
@@ -22,19 +22,21 @@ public class ProfileService {
 
   @Transactional
   public UUID createProfile(CreateProfileRequest req) {
-    if (repo.existsByUserId(req.getUserId())) {
-      return repo.findByUserId(req.getUserId()).get().getId();
+    Optional<Profile> existing = repo.findByUserId(req.getUserId());
+    if (existing.isPresent()) {
+      return existing.get().getId();
     }
 
-    Profile p = new Profile();
-    p.setId(UUID.randomUUID());
-    p.setUserId(req.getUserId());
-    p.setUsername(req.getUsername());
-    p.setAvatarUrl(req.getAvatarUrl());
-    p.setPhone(req.getPhone());
-    p.setPreferences(req.getPreferencesJson());
-    repo.save(p);
-    return p.getId();
+    Profile profile = Profile.builder()
+            .userId(req.getUserId())
+            .username(req.getUsername())
+            .email(req.getEmail())
+            .phone(req.getPhone())
+            .preferences(req.getPreferencesJson())
+            .build();
+
+    repo.save(profile);
+    return profile.getId();
   }
 
   @Transactional(readOnly = true)
@@ -49,28 +51,46 @@ public class ProfileService {
 
   @Transactional
   public boolean updateProfile(UUID profileId, UpdateProfileRequest req) {
-    Optional<Profile> byId = repo.findById(profileId);
-    if (byId.isEmpty()) return false;
-    Profile p = byId.get();
-    if (req.getUsername() != null) p.setUsername(req.getUsername());
-    if (req.getAvatarUrl() != null) p.setAvatarUrl(req.getAvatarUrl());
-    if (req.getPhone() != null) p.setPhone(req.getPhone());
-    if (req.getPreferencesJson() != null) p.setPreferences(req.getPreferencesJson());
-    repo.save(p);
+    Profile profile = repo.findById(profileId).orElse(null);
+    if (profile == null) {
+      return false;
+    }
+
+    if (req.getUsername() != null) {
+      profile.setUsername(req.getUsername());
+    }
+    if (req.getEmail() != null) {
+      profile.setEmail(req.getEmail());
+    }
+    if (req.getPhone() != null) {
+      profile.setPhone(req.getPhone());
+    }
+    if (req.getPreferencesJson() != null) {
+      profile.setPreferences(req.getPreferencesJson());
+    }
+
     return true;
   }
 
-  private ProfileResponse toResponse(Profile p) {
+  private ProfileResponse toResponse(Profile profile) {
     ProfileResponse r = new ProfileResponse();
-    r.setId(p.getId());
-    r.setUserId(p.getUserId());
-    r.setUsername(p.getUsername());
-    r.setAvatarUrl(p.getAvatarUrl());
-    r.setPhone(p.getPhone());
-    r.setPreferencesJson(p.getPreferences());
-    r.setCreatedAt(p.getCreatedAt());
-    r.setUpdatedAt(p.getUpdatedAt());
+    r.setId(profile.getId());
+    r.setUserId(profile.getUserId());
+    r.setUsername(profile.getUsername());
+    r.setEmail(profile.getEmail());
+    r.setPhone(profile.getPhone());
+    r.setPreferencesJson(profile.getPreferences());
+    r.setCreatedAt(profile.getCreatedAt());
+    r.setUpdatedAt(profile.getUpdatedAt());
     return r;
   }
 
+  @Transactional
+  public boolean deleteProfile(UUID profileId) {
+    if (!repo.existsById(profileId)) {
+      return false;
+    }
+    repo.deleteById(profileId);
+    return true;
+  }
 }

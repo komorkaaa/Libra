@@ -3,9 +3,9 @@ spring:
     name: auth-service
 
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5454/meetflow_db?currentSchema=auth}
-    username: ${SPRING_DATASOURCE_USERNAME:mfuser}
-    password: ${SPRING_DATASOURCE_PASSWORD:mfpass}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5454/libra_db?currentSchema=auth}
+    username: ${SPRING_DATASOURCE_USERNAME:libra_user}
+    password: ${SPRING_DATASOURCE_PASSWORD:libra_pass}
   jpa:
     hibernate:
       ddl-auto: update

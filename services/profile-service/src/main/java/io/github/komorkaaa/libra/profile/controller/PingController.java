@@ -1,4 +1,4 @@
-package io.github.komorkaaa.meetflow.profile.controller;
+package io.github.komorkaaa.libra.profile.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

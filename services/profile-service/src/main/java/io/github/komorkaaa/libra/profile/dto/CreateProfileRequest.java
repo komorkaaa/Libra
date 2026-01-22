@@ -1,4 +1,4 @@
-package io.github.komorkaaa.meetflow.profile.dto;
+package io.github.komorkaaa.libra.profile.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -18,7 +18,7 @@ public class CreateProfileRequest {
   @NotBlank
   private String username;
 
-  private String avatarUrl;
+  private String email;
   private String phone;
   private String preferencesJson;
 }

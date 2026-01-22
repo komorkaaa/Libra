@@ -1,4 +1,4 @@
-package io.github.komorkaaa.meetflow.profile.entity;
+package io.github.komorkaaa.libra.profile.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -8,9 +8,12 @@ import org.hibernate.type.SqlTypes;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
-
 @Entity
-@Table(name = "profiles", uniqueConstraints = {@UniqueConstraint(columnNames = "user_id")})
+@Table(name = "profiles", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "user_id"),
+        @UniqueConstraint(columnNames = "email")
+        }
+)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,20 +25,20 @@ public class Profile {
   @Column(columnDefinition = "uuid")
   private UUID id;
 
-  @Column(name = "user_id", columnDefinition = "uuid", unique = true, nullable = false)
+  @Column(name = "user_id", columnDefinition = "uuid", nullable = false, unique = true)
   private UUID userId;
 
-  @Column(name = "username", length = 50, nullable = false)
+  @Column(nullable = false, length = 50)
   private String username;
 
-  @Column(name = "avatar_url", length = 255)
-  private String avatarUrl;
+  @Column(nullable = false, length = 255)
+  private String email;
 
   @Column(length = 20)
   private String phone;
 
-  @Column(columnDefinition = "jsonb")
   @JdbcTypeCode(SqlTypes.JSON)
+  @Column(columnDefinition = "jsonb")
   private String preferences;
 
   @Column(name = "created_at", nullable = false)
@@ -46,7 +49,9 @@ public class Profile {
 
   @PrePersist
   public void prePersist() {
-    if (id == null) id = UUID.randomUUID();
+    if (id == null) {
+      id = UUID.randomUUID();
+    }
     createdAt = OffsetDateTime.now();
     updatedAt = createdAt;
   }

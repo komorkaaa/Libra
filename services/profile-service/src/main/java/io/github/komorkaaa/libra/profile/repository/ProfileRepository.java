@@ -1,6 +1,6 @@
-package io.github.komorkaaa.meetflow.profile.repository;
+package io.github.komorkaaa.libra.profile.repository;
 
-import io.github.komorkaaa.meetflow.profile.entity.Profile;
+import io.github.komorkaaa.libra.profile.entity.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 import java.util.UUID;

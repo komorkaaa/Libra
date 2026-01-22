@@ -1,4 +1,4 @@
-package io.github.komorkaaa.meetflow.gateway.config;
+package io.github.komorkaaa.libra.gateway.config;
 
 import org.springframework.context.annotation.Configuration;
 
