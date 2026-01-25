@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS profile.profiles (
     id UUID PRIMARY KEY,
     user_id UUID NOT NULL UNIQUE,
 
-    username VARCHAR(50) NOT NULL,
+    username VARCHAR(50),
 
     email VARCHAR(100) NOT NULL,
     phone VARCHAR(20),

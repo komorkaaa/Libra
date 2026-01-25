@@ -9,6 +9,7 @@ import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Entity
+//To-do: указать схему и добавить поле kycStatus
 @Table(name = "profiles", uniqueConstraints = {
         @UniqueConstraint(columnNames = "user_id"),
         @UniqueConstraint(columnNames = "email")

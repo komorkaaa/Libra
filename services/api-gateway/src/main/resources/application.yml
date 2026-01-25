@@ -1,6 +1,10 @@
 server:
   port: 8080
 
+jwt:
+  secret: super-secret-key-super-secret-key-123456
+  expiration-minutes: 30
+
 spring:
   application:
     name: api-gateway
@@ -24,6 +28,7 @@ spring:
             - Path=/profiles/**
           filters:
             - StripPrefix=1
+            - name: JwtAuth
 
 management:
   endpoints:

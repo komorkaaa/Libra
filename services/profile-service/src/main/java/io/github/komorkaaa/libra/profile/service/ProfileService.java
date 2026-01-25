@@ -39,6 +39,22 @@ public class ProfileService {
     return profile.getId();
   }
 
+  @Transactional
+  public UUID createProfile(UUID userId, String email) {
+    Optional<Profile> existing = repo.findByUserId(userId);
+    if (existing.isPresent()) {
+      return existing.get().getId();
+    }
+
+    Profile profile = Profile.builder()
+            .userId(userId)
+            .email(email)
+            .build();
+
+    repo.save(profile);
+    return profile.getId();
+  }
+
   @Transactional(readOnly = true)
   public Optional<ProfileResponse> getProfile(UUID profileId) {
     return repo.findById(profileId).map(this::toResponse);

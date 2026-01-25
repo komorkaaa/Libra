@@ -63,4 +63,13 @@ public class ProfileController {
     }
     return ResponseEntity.noContent().build();
   }
+
+  @GetMapping("/me")
+  public ResponseEntity<ProfileResponse> me(
+          @RequestHeader("X-User-Id") UUID userId
+  ) {
+    return service.getByUserId(userId)
+            .map(ResponseEntity::ok)
+            .orElse(ResponseEntity.notFound().build());
+  }
 }

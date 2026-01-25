@@ -1,3 +1,10 @@
+server:
+  port: 8080
+
+jwt:
+  secret: super-secret-key-super-secret-key-123456
+  expiration-minutes: 30
+
 spring:
   application:
     name: auth-service
@@ -27,6 +34,3 @@ logging:
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
     org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping=TRACE:
-
-server:
-  port: 8080
